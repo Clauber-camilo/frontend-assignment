@@ -1,0 +1,6 @@
+@import './variables';
+
+// Convert pixels into REM
+@function rem($pixels, $base: $font-size) {
+	@return ($pixels / $base) * 1rem;
+}
