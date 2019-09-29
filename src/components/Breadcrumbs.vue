@@ -29,6 +29,6 @@ export default {
     align-items: center;
     font-size: 12px;
 
-    background-color: $light-grey;
+    background-color: $grey-light;
   }
 </style>

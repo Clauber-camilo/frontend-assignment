@@ -13,7 +13,7 @@
 
   .footer {
     height: $footerHeight;
-    background-color: $light-grey;
+    background-color: $grey-light;
     width: 100vw;
   }
 </style>

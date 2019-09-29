@@ -20,7 +20,9 @@
   "license": "ISC",
   "dependencies": {
     "vue": "2.6.8",
+    "vue-currency-input": "^1.10.0",
     "vue-router": "^3.0.1",
+    "vuelidate": "^0.7.4",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
