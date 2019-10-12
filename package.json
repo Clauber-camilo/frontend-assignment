@@ -23,7 +23,8 @@
     "vue-currency-input": "^1.10.0",
     "vue-router": "^3.0.1",
     "vuelidate": "^0.7.4",
-    "vuex": "^3.0.1"
+    "vuex": "^3.1.1",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",

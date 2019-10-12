@@ -12,6 +12,7 @@
 
       <div class="error" v-if="!$v.name.required">* Field is required</div>
     </div>
+
     <div class="form-group" :class="{ '-error': $v.spend.$error }">
       <label class="label">COMPANY SPEND</label>
       <input
@@ -25,6 +26,7 @@
 
       <div class="error" v-if="!$v.spend.required">* Field is required</div>
     </div>
+
     <div class="form-group">
       <label class="label">Company Spend Ability</label>
 
@@ -59,10 +61,27 @@
         <div class="error" v-if="!$v.spend_max.minValue">* Field don't have a valid value </div>
       </div>
     </div>
+
+    <div class="form-group -big">
+      <label class="label"> Notes </label>
+      <textarea
+        name="notes"
+        class="input"
+        cols="30"
+        rows="5"
+        placeholder="e.g Good Tech Company"
+        v-model="notes"
+        @click="toggleModal"
+        readonly
+      >
+      </textarea>
+    </div>
+
   </form>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import { validationMixin } from "vuelidate";
 import { CurrencyDirective, parseCurrency, CurrencyInput } from "vue-currency-input";
 import { required, minValue, maxValue, sameAs, between } from "vuelidate/lib/validators";
@@ -70,10 +89,13 @@ import { required, minValue, maxValue, sameAs, between } from "vuelidate/lib/val
 export default {
   name: "company-data-form",
   mixins: [validationMixin],
+
   directives: {
     currency: CurrencyDirective
   },
+
   components: {CurrencyInput},
+
   data() {
     return {
       name: "",
@@ -86,6 +108,19 @@ export default {
       decimalLength: 3
     };
   },
+
+  computed: {
+    notesModal() {
+      return this.$store.state.company.notes_content
+    }
+  },
+
+  watch: {
+    notesModal (val) {
+      this.notes = val;
+    }
+  },
+
   validations() {
     return {
       name: {
@@ -106,15 +141,25 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'toggle'
+    ]),
+
     handleForm() {
       console.log("Sent");
     },
+
     setFormVal(field, value) {
       this[field] = value;
       this.$v[field].$touch();
     },
+
     parseCurrencyVal (val) {
       return parseCurrency(val, this.locale, this.currency)
+    },
+
+    toggleModal () {
+      this.toggle('company_data_modal');
     }
   }
 };
@@ -137,6 +182,8 @@ export default {
   border: 1px solid $border-color;
   padding: 10px 15px;
   font-size: rem(12px);
+  box-shadow: 0 0 3px rgba($grey-dark, 0.15);
+  outline: none;
 
   &::placeholder {
     color: $border-color;
@@ -155,6 +202,10 @@ export default {
     display: grid;
     max-width: 50%;
     margin-bottom: 20px;
+
+    &.-big {
+      max-width: 100%;
+    }
 
     &.-error {
       animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
