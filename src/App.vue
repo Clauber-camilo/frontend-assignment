@@ -21,6 +21,7 @@ export default {
 @import '~Styles/settings/variables';
 #app {
   font-family: $font-default;
+  background-color: $purple-lighter;
 }
 
 .fade-enter-active, .fade-leave-active {

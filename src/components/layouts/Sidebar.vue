@@ -49,6 +49,7 @@
       width: 100%;
       border-radius: 5px;
       border: 1px solid $border-color;
+      background-color: white;
 
       > .item {
         border-bottom: 1px solid $border-color;

@@ -23,10 +23,12 @@ export default {
   @import '~Styles/settings/mixins';
 
   .company-data {
+    background-color: white;
     border-radius: 5px;
     border: 1px solid $border-color;
     width: 100%;
     padding: 15px;
+    margin-bottom: 30px;
 
     > .text {
       font-size: rem(12px);
